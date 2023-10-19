@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  color: white;  
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    background: black;
+    color: white;
+    overflow: hidden;
+    font-family: "poppins";
+}
+
+aside{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px 15px;
+
+    nav{
+        display: flex;
+        flex-direction: column;
+        
+        a{
+            padding: 20px 10px;
+            display: flex;
+            gap: 5px;
+            border-radius: 10px;
+            white-space: nowrap;
+            transition: all 0.3s;
+
+            
+
+                @media (max-width:870px){
+                    span{
+                    display: none;
+                }
+
+                i{
+                    font-size: 20px;
+                }
+            }
+
+            &:hover{
+                background: rgb(32, 32, 32);
+            }
+        }
+    }
+
+    #logo{
+       display: none; 
+       width: 40px;
+    }
+
+    @media (max-width:870px){
+        #logo-text{
+            display: none;
+
+        }
+        #logo{
+            display: block;
+       }
+    }
+
+    img{
+        max-width: 130px;
+        object-fit: contain;
+    }
+}
+
+main{
+    width: 100%;
+    
+}
+
+// ana içerik (üst kısım)
+
+main header{
+display: flex;
+justify-content: space-between;
+padding:24px 10px;
+
+@media (max-width:870px){
+    justify-content: center;
+}
+
+form{
+display: flex;
+
+input{
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px 0 0 5px; 
+    outline: none;
+}
+
+button{
+    background: #1DB954;
+    height: 100%;
+    padding: 0 25px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    
+    &:hover{
+        background: #0fb94a;
+
+    }
+    
+}
+}
+ul{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    @media (max-width:870px){
+        display: none;
+    }
+
+    li{
+        padding: 5px 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 300ms;
+
+        :hover{
+            background: rgb(60, 60, 60);
+        }
+    }
+}
+}
+
+// ana içerik (alt kısım)
+
+main .songs {
+    background: rgb(42, 42, 42);
+    height: 100%;
+    text-transform: capitalize;
+}
+
+main .songs #title{
+    padding: 20px;
+}
+
+
+main #list{
+    margin-top: 20px;
+    padding:0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 80vh;
+    overflow-y: auto;
+    gap: 20px;
+
+    &::-webkit-scrollbar {
+        background: black;
+        width: 8px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #0e9c3f;
+      }
+
+    @media (max-width:768px) {
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .card{
+        width: 200px;
+        height: 90px;
+        padding: 15px;
+        background: #181818;
+        border-radius: 6px;
+        cursor: pointer;
+
+        &:hover .play{
+            opacity: 1;
+            bottom: 20px;
+
+        }
+
+        figure{
+            position: relative;
+            
+            img{
+                width: 100%;
+                border-radius: 6px;
+                margin-bottom: 10px;
+            }
+
+            .play{
+                position: absolute;
+                background: #1DB954;
+                right: 10px;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: grid;
+                place-items: center;
+                font-size: 23px;
+                opacity: 0;
+                bottom: -20px;
+                transition: all 0.3s;
+
+                &:hover{
+                    background:#0e9c3f;
+                    scale: 0.9;
+
+                }
+
+            }
+        
+        }
+        h4{
+            margin-bottom: 6px;
+
+        }
+
+
+    }
+}
+
+// oynatılan şarkı barı
+
+.playing{
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    z-index: 100;
+    padding: 10px 40px;
+    width: 100%;
+    background-color: #fa8bff;
+  background-image: linear-gradient(
+    240deg,
+    #fa8bff 0%,
+    #2bd2ff 52%,
+    #2bff88 90%  );
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.612);
+
+  @media (max-width:768px){
+    font-size: 13px;
+    padding: 10px;
+}
+
+    .info{
+        display: flex;
+        gap: 20px;
+
+       
+
+        img{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        
+    }
+
+    audio{
+     width: 300px;
+    }
+
+
+}
+
+.animate{
+    animation: turn 4s linear infinite;
+}
+
+@keyframes turn {
+    from{
+        transform: rotate(0);
+    }
+
+    to{
+        transform:rotate(360deg) ;
+    }
+    
+}
+
+.audio-player {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+    width: 300px;
+    height: 80px;
+    background-color: #282828;
+    border-radius: 8px;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .album-cover {
+    width: 64px;
+    height: 64px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+  
+  .player-controls {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .song-info {
+    margin-bottom: 4px;
+  }
+  
+  .song-title {
+    font-size: 16px;
+    color: #fff;
+    margin: 0;
+  }
+  
+  .artist {
+    font-size: 12px;
+    color: #b3b3b3;
+    margin: 0;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: #4f4f4f;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    width: 50%;
+    height: 100%;
+    background-color: #1db954;
+    transform-origin: left;
+    animation: progress-animation 10s linear infinite;
+  }
+  
+  .buttons {
+    display: flex;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .play-btn,
+  .pause-btn {
+    font-size: 16px;
+    color: #fff;
+    margin-right: 8px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .play-btn:hover,
+  .pause-btn:hover {
+    transform: scale(1.2);
+  }
+  
+  @keyframes progress-animation {
+    0% {
+      transform: scaleX(0);
+    }
+  
+    100% {
+      transform: scaleX(1);
+    }
+  }
